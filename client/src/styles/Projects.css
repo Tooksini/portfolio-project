@@ -1,0 +1,135 @@
+/* Projects Section - layout only, colors follow theme */
+.projects-section {
+    padding: 6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Section heading */
+.projects-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    /* Use accent color from theme or inline style */
+}
+
+/* Grid layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0;
+}
+
+.project-card {
+    --grad: #0fa245, #000000; /* green gradient matching your theme */
+    padding: 2rem;
+    border-radius: 2rem;
+    display: grid;
+    grid-template:
+        "title icon"
+        "content content"
+        "bar bar" / 1fr auto;
+    gap: 1.5rem;
+    font-family: Courier, sans-serif;
+    color: inherit; /* inherit text color from theme */
+    background-image: linear-gradient(to bottom left, rgba(15,162,69,0.2), rgba(71,220,240,0.1));
+    box-shadow:
+        inset -2px 2px rgba(255,255,255,0.3),
+        -10px 10px 20px rgba(0,0,0,0.25);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Title of the project */
+.project-card h3 {
+    grid-area: title;
+    align-self: end;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Icon placeholder for tech or GitHub (optional) */
+.project-card .icon {
+    grid-area: icon;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    background: linear-gradient(to right, var(--grad));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Content area (description + tech badges + link) */
+.project-content {
+    grid-area: content;
+}
+
+.project-content p,
+.project-content .tech-stack,
+.project-content a {
+    margin: 0.5rem 0;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: #0fa245;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: #47dcf0;
+}
+
+/* Bottom gradient bar */
+.project-card::after {
+    content: "";
+    grid-area: bar;
+    height: 2px;
+    width: 100%;
+    background-image: linear-gradient(90deg, var(--grad));
+    border-radius: 1px;
+}
+
+.tech-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  margin-right: 0.3rem;
+  margin-top: 0.3rem;
+  background-color: #56ab75a3;
+  color: white;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.tech-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(15,162,69,0.5);
+}
+
+/* Responsive breakpoint */
+@media (max-width: 768px) {
+  .projects-grid {
+        grid-template-columns: 1fr;
+  }
+  .project-card {
+      grid-template:
+          "title icon"
+          "content content"
+          "bar bar" / 1fr auto;
+  }
+}

@@ -1,0 +1,92 @@
+/* ========================
+   About Section Container
+   ======================== */
+.about-section {
+    background: linear-gradient(135deg, #121212, #1e1e2f); /* Dark gradient background */
+    color: #f5f5f5; /* Text color */
+    padding: 6rem 2rem; /* Top/Bottom and Left/Right padding */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+/* ========================
+   Content Wrapper
+   ======================== */
+.about-content {
+    display: flex;
+    flex-direction: row; /* Layout: image + text side by side on desktop */
+    align-items: center; /* Vertically center items */
+    gap: 3rem; /* Space between image and text */
+    max-width: 1200px; /* Max width of section */
+    width: 100%; /* Full width within max-width */
+}
+
+/* ========================
+   Text Content
+   ======================== */
+.about-text {
+    max-width: 600px; /* Limit width of text block */
+}
+
+/* ========================
+   Profile Image
+   ======================== */
+.profile-img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover; /* Keep aspect ratio, crop if needed */
+    border-radius: 50%; /* Circular image */
+    border: 3px solid #0fa245; /* Green border matching theme */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for profile image */
+.profile-img:hover {
+    transform: translateY(-5px) scale(1.05); /* Lift and slightly enlarge */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.5); /* Stronger shadow */
+}
+
+/* ========================
+   Skills List
+   ======================== */
+.skills {
+    list-style: none; /* Remove bullets */
+    padding: 0; 
+    margin-top: 1rem; /* Space above skills */
+    display: flex; /* Display skills horizontally */
+    flex-wrap: wrap; /* Wrap to next line if needed */
+    gap: 0.5rem 1rem; /* Vertical and horizontal spacing */
+}
+
+/* Individual Skill Item */
+.skills li {
+    background: rgba(15, 162, 69, 0.2); /* Light green background */
+    padding: 0.5rem 0.8rem; /* Space inside the badge */
+    border-radius: 12px; /* Rounded corners */
+    font-size: 0.9rem;
+    color: #0fa245; /* Green text color */
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover animation */
+}
+
+/* Hover effect for each skill */
+.skills li:hover {
+    transform: translateY(-2px) scale(1.05); /* Slight lift and enlarge */
+    box-shadow: 0 4px 10px rgba(15, 162, 69, 0.5); /* Shadow with theme color */
+}
+
+/* ========================
+   Responsive Styles
+   ======================== */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column; /* Stack image and text vertically */
+        gap: 2rem; /* Reduce gap on mobile */
+    }
+    .profile-img {
+        width: 140px; /* Smaller image on mobile */
+        height: 140px;
+    }
+}

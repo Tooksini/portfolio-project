@@ -1,0 +1,83 @@
+# =====================================
+# Flask + React Project (.gitignore)
+# =====================================
+
+# ---------------------------
+# Node / React
+# ---------------------------
+client/node_modules/
+client/.env
+client/.DS_Store
+
+# React environment files
+client/.env.local
+client/.env.development.local
+client/.env.test.local
+client/.env.production.local
+
+# NPM / Yarn logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---------------------------
+# Python / Flask
+# ---------------------------
+server/venv/
+server/__pycache__/
+server/.env
+server/*.pyc
+server/*.pyo
+server/*.pyd
+server/instance/
+server/*.log
+
+# Flask config & database files
+server/db_config.properties
+server/database/*.sqlite3
+server/database/*.db
+
+# ---------------------------
+# Databases / SQL Dumps
+# ---------------------------
+db_config.properties
+database/*.sql
+
+# ---------------------------
+# OS / System Files
+# ---------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# ---------------------------
+# Dependencies & Build
+# ---------------------------
+/node_modules
+/.pnp
+.pnp.js
+
+# ---------------------------
+# Testing / Coverage
+# ---------------------------
+/coverage
+.pytest_cache/
+.nyc_output/
+*.lcov
+
+# ---------------------------
+# Misc & Editor Folders
+# ---------------------------
+.vscode/
+.idea/
+*.swp
+*.bak
+*.old
+
+# Update file
+updateDB.py
+
+# Prevent local virtual environment in root
+venv/
+.env
