@@ -21,11 +21,18 @@ def serve(path):
     else:
         return send_from_directory(build_dir, "index.html")
 
+# Serve static files (JS, CSS, images)
+@app.route("/static/<path:filename>")
+def serve_static(filename):
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
+    return send_from_directory(os.path.join(build_dir, "static"), filename)
+
 
 # --- CORS setup ---
 CORS(
     app,
-    origins=["http://localhost:3000", "https://portfolio-project-pdp5.onrender.com/"],
+    origins=["http://localhost:3000",
+              "https://portfolio-project-pdp5.onrender.com"],
     methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
     supports_credentials=True,
@@ -42,18 +49,6 @@ app.config.update(
 )
 
 mail = Mail(app)
-
-# --- Preflight handler (safeguard) ---
-@app.before_request
-def handle_preflight():
-    if request.method == "OPTIONS":
-        response = app.make_default_options_response()
-        headers = response.headers
-        headers["Access-Control-Allow-Origin"] = "http://localhost:3000"
-        headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-        headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
-        return response
-
 
 # --- Contact endpoint ---
 @app.route("/api/contact", methods=["POST"])
@@ -83,6 +78,10 @@ def contact():
 
 # --- Register blueprint & run ---
 app.register_blueprint(projects_bp)
+
+@app.route("/ping")
+def ping():
+    return jsonify({"status": "ok"}), 200
 
 if __name__ == "__main__":
     app.run(debug=False, host="0.0.0.0", port=5000)
