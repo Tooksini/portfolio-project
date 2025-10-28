@@ -1,25 +1,27 @@
-from flask import Flask, request, jsonify
+from flask import Flask, send_from_directory, request, jsonify
 from flask_cors import CORS
 from flask_mail import Mail, Message
-from flask import send_from_directory
 from routes.projects import projects_bp
-
-import os
 from dotenv import load_dotenv
+import os
+
 
 load_dotenv()
 
 app = Flask(__name__)
 
+BUILD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../client/build")
+
 # Serve React build files
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def serve(path):
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
-    if path != "" and os.path.exists(os.path.join(build_dir, path)):
-        return send_from_directory(build_dir, path)
+def serve_react(path):
+    if path != "" and os.path.exists(os.path.join(BUILD_DIR, path)):
+        return send_from_directory(BUILD_DIR, path)
+    elif path.startswith("static/") and os.path.exists(os.path.join(BUILD_DIR, path)):
+        return send_from_directory(BUILD_DIR, path)
     else:
-        return send_from_directory(build_dir, "index.html")
+        return send_from_directory(BUILD_DIR, "index.html")
 
 # Serve static files (JS, CSS, images)
 @app.route("/static/<path:filename>")
