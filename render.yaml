@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: portfolio-project
+    env: python
+    buildCommand: |
+      cd server && pip install -r requirements.txt
+      cd ../client && npm install && npm run build
+    startCommand: |
+      cd server && gunicorn app:app
+    envVars:
+      - key: PORT
+        value: 5000

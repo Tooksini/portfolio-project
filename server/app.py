@@ -1,13 +1,25 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_mail import Mail, Message
+from flask import send_from_directory
 from routes.projects import projects_bp
+
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__)
+
+# Serve React build files
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    build_dir = os.path.join(os.path.dirname(__file__), "../client/build")
+    if path != "" and os.path.exists(os.path.join(build_dir, path)):
+        return send_from_directory(build_dir, path)
+    else:
+        return send_from_directory(build_dir, "index.html")
 
 # --- CORS setup ---
 CORS(
@@ -72,4 +84,4 @@ def contact():
 app.register_blueprint(projects_bp)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False, host="0.0.0.0", port=5000)
