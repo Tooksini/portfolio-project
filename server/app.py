@@ -5,9 +5,14 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_mail import Mail, Message
-from routes.projects import projects_bp
-import os
 from dotenv import load_dotenv
+import os, sys
+# Allow both local and Render runs
+if __package__ is None or __package__ == "":
+    sys.path.append(os.path.dirname(__file__))
+    from routes.projects import projects_bp
+else:
+    from server.routes.projects import projects_bp
 
 # ----------------------------
 # Load environment variables
