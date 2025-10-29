@@ -121,19 +121,24 @@ def serve_react(path):
 @app.route("/debug/build")
 def debug_build():
     build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build"))
-    if not os.path.exists(build_dir):
-        return f"❌ Build directory not found at {build_dir}", 404
+    static_dir = os.path.join(build_dir, "static")
+    exists_main_js = os.path.exists(os.path.join(static_dir, "js/main.3dd403c7.js"))
+    exists_main_css = os.path.exists(os.path.join(static_dir, "css/main.4a5877b2.css"))
 
     files = []
-    for root, dirs, filenames in os.walk(build_dir):
-        for filename in filenames:
-            rel_path = os.path.relpath(os.path.join(root, filename), build_dir)
-            files.append(rel_path)
+    if os.path.exists(build_dir):
+        for root, dirs, filenames in os.walk(build_dir):
+            for filename in filenames:
+                rel_path = os.path.relpath(os.path.join(root, filename), build_dir)
+                files.append(rel_path)
 
     return {
         "build_dir": build_dir,
+        "static_dir": static_dir,
+        "exists_main_js": exists_main_js,
+        "exists_main_css": exists_main_css,
         "total_files_found": len(files),
-        "example_files": files[:10],
+        "example_files": files[:10]
     }
 
 # ----------------------------
