@@ -93,7 +93,10 @@ def contact():
 def serve_static(filename):
     build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build"))
     static_dir = os.path.join(build_dir, "static")
+    full_path = os.path.join(static_dir, filename)
+    print("🔍 Serving static file:", full_path, "exists?", os.path.exists(full_path))
     return send_from_directory(static_dir, filename)
+
 
 # ----------------------------
 # Serve React Frontend
