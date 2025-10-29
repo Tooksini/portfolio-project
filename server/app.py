@@ -91,7 +91,7 @@ def contact():
 # ----------------------------
 @app.route("/static/<path:filename>")
 def serve_static(filename):
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build"))
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "build"))
     static_dir = os.path.join(build_dir, "static")
     full_path = os.path.join(static_dir, filename)
     print("🔍 Serving static file:", full_path, "exists?", os.path.exists(full_path))
@@ -104,7 +104,7 @@ def serve_static(filename):
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_react(path):
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build"))
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "build"))
 
     # Serve files that exist directly in build/ (favicon, manifest, etc.)
     file_path = os.path.join(build_dir, path)
@@ -120,7 +120,7 @@ def serve_react(path):
 # -------------------------------------
 @app.route("/debug/build")
 def debug_build():
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build"))
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "build"))
     static_dir = os.path.join(build_dir, "static")
     exists_main_js = os.path.exists(os.path.join(static_dir, "js/main.3dd403c7.js"))
     exists_main_css = os.path.exists(os.path.join(static_dir, "css/main.4a5877b2.css"))
