@@ -91,7 +91,7 @@ def contact():
 # ----------------------------
 @app.route("/static/<path:filename>")
 def serve_static(filename):
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build"))
     static_dir = os.path.join(build_dir, "static")
     return send_from_directory(static_dir, filename)
 
@@ -101,7 +101,7 @@ def serve_static(filename):
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_react(path):
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build"))
 
     # Serve files that exist directly in build/ (favicon, manifest, etc.)
     file_path = os.path.join(build_dir, path)
@@ -117,7 +117,7 @@ def serve_react(path):
 # -------------------------------------
 @app.route("/debug/build")
 def debug_build():
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../build"))
     if not os.path.exists(build_dir):
         return f"❌ Build directory not found at {build_dir}", 404
 
