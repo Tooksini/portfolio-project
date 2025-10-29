@@ -86,6 +86,14 @@ def contact():
         print("❌ Error sending email:", e)
         return jsonify({"status": "error", "message": "Failed to send email."}), 500
 
+# ----------------------------
+# Serve Static Files (JS, CSS, Media)
+# ----------------------------
+@app.route("/static/<path:filename>")
+def serve_static(filename):
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
+    static_dir = os.path.join(build_dir, "static")
+    return send_from_directory(static_dir, filename)
 
 # ----------------------------
 # Serve React Frontend
@@ -93,22 +101,16 @@ def contact():
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_react(path):
-    # absolute path to the React build
     build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
 
-    # If request starts with "static/", serve from build/static
-    if path.startswith("static/"):
-        # remove the leading "static/" and serve the remainder from build/static
-        subpath = path[len("static/"):]
-        return send_from_directory(os.path.join(build_dir, "static"), subpath)
-
-    # If file exists directly under build/, serve it (e.g., favicon.ico, manifest.json)
+    # Serve files that exist directly in build/ (favicon, manifest, etc.)
     file_path = os.path.join(build_dir, path)
-    if path != "" and os.path.exists(file_path):
+    if path and os.path.exists(file_path):
         return send_from_directory(build_dir, path)
 
-    # Otherwise serve index.html (React Router fallback)
+    # React Router fallback
     return send_from_directory(build_dir, "index.html")
+
 
 # -------------------------------------
 # 🔍 Debug route for Render visibility
@@ -130,7 +132,6 @@ def debug_build():
         "total_files_found": len(files),
         "example_files": files[:10],
     }
-
 
 # ----------------------------
 # Run the App
