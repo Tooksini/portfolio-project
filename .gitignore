@@ -81,3 +81,5 @@ updateDB.py
 # Prevent local virtual environment in root
 venv/
 .env
+
+

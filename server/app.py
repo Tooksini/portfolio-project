@@ -1,46 +1,48 @@
-from flask import Flask, send_from_directory, request, jsonify
+# =====================================
+# Flask App - Portfolio Project
+# =====================================
+
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from routes.projects import projects_bp
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
-
+# ----------------------------
+# Load environment variables
+# ----------------------------
 load_dotenv()
 
+# ----------------------------
+# Initialize Flask app
+# ----------------------------
 app = Flask(__name__)
 
-BUILD_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../client/build")
+# ----------------------------
+# Register Blueprints FIRST
+# (So /api/* routes are handled before static files)
+# ----------------------------
+app.register_blueprint(projects_bp)
 
-# Serve React build files
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def serve_react(path):
-    if path != "" and os.path.exists(os.path.join(BUILD_DIR, path)):
-        return send_from_directory(BUILD_DIR, path)
-    elif path.startswith("static/") and os.path.exists(os.path.join(BUILD_DIR, path)):
-        return send_from_directory(BUILD_DIR, path)
-    else:
-        return send_from_directory(BUILD_DIR, "index.html")
-
-# Serve static files (JS, CSS, images)
-@app.route("/static/<path:filename>")
-def serve_static(filename):
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
-    return send_from_directory(os.path.join(build_dir, "static"), filename)
-
-
-# --- CORS setup ---
+# ----------------------------
+# CORS Setup
+# ----------------------------
 CORS(
     app,
-    origins=["http://localhost:3000",
-              "https://portfolio-project-pdp5.onrender.com"],
+    origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://portfolio-project-pdp5.onrender.com"
+    ],
     methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
     supports_credentials=True,
 )
 
-# --- Mail config ---
+# ----------------------------
+# Flask-Mail Configuration
+# ----------------------------
 app.config.update(
     MAIL_SERVER="smtp.gmail.com",
     MAIL_PORT=587,
@@ -52,7 +54,9 @@ app.config.update(
 
 mail = Mail(app)
 
-# --- Contact endpoint ---
+# ----------------------------
+# Contact Form Endpoint
+# ----------------------------
 @app.route("/api/contact", methods=["POST"])
 def contact():
     data = request.get_json()
@@ -71,19 +75,36 @@ def contact():
 
     try:
         mail.send(msg)
-        print("Email sent successfully!")
+        print("✅ Email sent successfully!")
         return jsonify({"status": "success", "message": "Email sent successfully!"}), 200
     except Exception as e:
-        print("Error sending email:", e)
+        print("❌ Error sending email:", e)
         return jsonify({"status": "error", "message": "Failed to send email."}), 500
 
 
-# --- Register blueprint & run ---
-app.register_blueprint(projects_bp)
+# ----------------------------
+# Serve React Frontend (after API routes)
+# ----------------------------
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve_react(path):
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
 
-@app.route("/ping")
-def ping():
-    return jsonify({"status": "ok"}), 200
+    # Serve static assets (JS, CSS, images)
+    if path != "" and os.path.exists(os.path.join(build_dir, path)):
+        return send_from_directory(build_dir, path)
 
+    # Otherwise, serve index.html for React Router
+    return send_from_directory(build_dir, "index.html")
+
+
+# ----------------------------
+# Run the App
+# ----------------------------
 if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0", port=5000)
+    try:
+        port = int(os.getenv("PORT", 5001))  # ✅ safely defaults to 5001
+    except ValueError:
+        port = 5001
+    app.run(debug=True, host="0.0.0.0", port=port)
+

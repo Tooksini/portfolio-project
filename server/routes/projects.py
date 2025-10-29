@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify
 from db_connect import get_db_connection
 
-projects_bp = Blueprint("projects_bp", __name__)
+# Prefix ensures API endpoints live under /api/
+projects_bp = Blueprint("projects_bp", __name__, url_prefix="/api")
 
 @projects_bp.route("/projects", methods=["GET"])
 def get_projects():
@@ -15,19 +16,19 @@ def get_projects():
         cursor.execute("SELECT * FROM projects")
         rows = cursor.fetchall()
 
-        # Convert rows to list of dictionaries for JSON output
+        # Convert rows to list of dictionaries
         columns = [col[0] for col in cursor.description]
         projects = [dict(zip(columns, row)) for row in rows]
 
-        # Close cursor and connection
+        # Close resources
         cursor.close()
         conn.close()
 
         # Return JSON response
-        return jsonify({"success": True, "projects": projects}), 200
+        return jsonify({"projects": projects}), 200
 
     except Exception as e:
-        # Handle errors
+        # Safely close connection if something goes wrong
         if conn:
             conn.close()
-        return jsonify({"success": False, "error": str(e)}), 500
+        return jsonify({"error": str(e)}), 500

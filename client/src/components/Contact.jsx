@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../styles/Contact.css";
 
-export default function Contact() {
+const Contact = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState("");
 
@@ -15,10 +15,18 @@ export default function Contact() {
     setStatus("Sending...");
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/api/contact", formData, {
+      //Automatically switch between local and Render API URLs
+      const API_URL =
+        process.env.NODE_ENV === "production"
+          ? "https://portfolio-project-pdp5.onrender.com/api/contact"
+          : "http://127.0.0.1:5001/api/contact";
+
+      const response = await axios.post(API_URL, formData, {
         headers: { "Content-Type": "application/json" },
       });
-      setStatus(response.data.message);
+
+      setStatus(response.data.message || "Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error sending message:", error);
       setStatus("Failed to send message. Please try again.");
@@ -31,8 +39,8 @@ export default function Contact() {
         <div className="contact-text">
           <h3>Seen Enough? Contact Me</h3>
           <p>
-            You can reach me at{" "}
-            <a href="mailto:cuffsachin@gmail.com">cuffsachin@gmail.com</a> or use the form below.
+            You can reach me at my{" "}
+            <a href="mailto:cuffsachin@gmail.com">email</a> or test out my contact form below.
           </p>
         </div>
 
@@ -68,4 +76,6 @@ export default function Contact() {
       </div>
     </section>
   );
-}
+};
+
+export default Contact;

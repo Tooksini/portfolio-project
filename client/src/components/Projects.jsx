@@ -8,16 +8,26 @@ const Projects = () => {
     const [errorMsg, setErrorMsg] = useState("");
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:5000/projects")
-            .then((res) => {
-                setProjects(res.data.projects);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setErrorMsg("Failed to fetch projects");
-                setLoading(false);
-            });
+    // Dynamically pick backend URL depending on environment
+    const API_URL =
+        process.env.NODE_ENV === "production"
+        ? "https://portfolio-project-pdp5.onrender.com/api/projects"
+        : "http://127.0.0.1:5001/api/projects";
+
+    axios
+        .get(API_URL)
+        .then((res) => {
+            console.log("API response:", res.data); //
+            setProjects(res.data.projects || []);   // 
+            setLoading(false);
+        })
+        .catch((err) => {
+            console.error("Error fetching projects:", err);
+            setErrorMsg("Failed to fetch projects");
+            setLoading(false);
+        });
     }, []);
+
 
     if (loading) return <p className="loading">Loading projects...</p>;
     if (errorMsg) return <p className="error">{errorMsg}</p>;
@@ -29,7 +39,7 @@ const Projects = () => {
 
             {/* Grid container for project cards */}
             <div className="projects-grid">
-                {projects.map((project) => {
+                {Array.isArray(projects) && projects.map((project) => {
                     // Convert tech_stack to array if it's a string (from database JSON)
                     const techArray = Array.isArray(project.tech_stack)
                         ? project.tech_stack 
