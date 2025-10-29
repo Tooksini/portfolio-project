@@ -93,20 +93,19 @@ def contact():
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_react(path):
-    # Absolute path to React build folder
     build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
 
-    # Check if build exists
-    if not os.path.exists(build_dir):
-        return jsonify({"error": f"❌ Build directory not found at {build_dir}"}), 404
+    # Serve static assets (JS, CSS, images)
+    if path.startswith("static/"):
+        return send_from_directory(os.path.join(build_dir, "static"), path[len("static/"):])
 
-    # Serve static file if it exists
-    file_path = os.path.join(build_dir, path)
-    if path != "" and os.path.exists(file_path):
-        return send_from_directory(build_dir, path)
+    # Serve index.html for everything else
+    if path == "" or not os.path.exists(os.path.join(build_dir, path)):
+        return send_from_directory(build_dir, "index.html")
 
-    # Otherwise, serve index.html for React Router
-    return send_from_directory(build_dir, "index.html")
+    # Serve any other file that exists (e.g., favicon)
+    return send_from_directory(build_dir, path)
+
 
 
 # -------------------------------------
