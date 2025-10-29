@@ -97,6 +97,11 @@ def serve_react(path):
     # Otherwise, serve index.html for React Router
     return send_from_directory(build_dir, "index.html")
 
+@app.route("/static/<path:filename>")
+def serve_static(filename):
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
+    return send_from_directory(os.path.join(build_dir, "static"), filename)
+
 
 # ----------------------------
 # Run the App
