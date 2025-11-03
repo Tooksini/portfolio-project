@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os, sys
+import traceback
 
 # ----------------------------
 # Fix Import Paths (Render & Local)
@@ -80,11 +81,13 @@ def contact():
 
     try:
         mail.send(msg)
-        print("✅ Email sent successfully!")
+        print("✅ Email sent successfully!", flush=True)
         return jsonify({"status": "success", "message": "Email sent successfully!"}), 200
     except Exception as e:
-        print("❌ Error sending email:", e)
-        return jsonify({"status": "error", "message": "Failed to send email."}), 500
+        print("❌ Error sending email:", e, flush=True)
+        traceback.print_exc(file=sys.stdout)
+        sys.stdout.flush()
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 # ----------------------------
 # Serve React Frontend (SPA)
