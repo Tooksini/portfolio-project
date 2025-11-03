@@ -11,7 +11,7 @@ const Projects = () => {
     // Dynamically pick backend URL depending on environment
     const API_URL =
         process.env.NODE_ENV === "production"
-        ? "https://portfolio-project-pdp5.onrender.com/api/projects"
+        ? "https://portfolio-project-x2xz.onrender.com/api/projects"
         : "http://127.0.0.1:5001/api/projects";
 
     axios

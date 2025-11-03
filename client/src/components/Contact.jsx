@@ -18,7 +18,7 @@ const Contact = () => {
       //Automatically switch between local and Render API URLs
       const API_URL =
         process.env.NODE_ENV === "production"
-          ? "https://portfolio-project-pdp5.onrender.com/api/contact"
+          ? "https://portfolio-project-x2xz.onrender.com/api/contact"
           : "http://127.0.0.1:5001/api/contact";
 
       const response = await axios.post(API_URL, formData, {
