@@ -35,6 +35,10 @@
   transition: all 0.3s ease;
 }
 
+body.dark-mode h2.logo{
+  color:white
+}
+
 /* ========================
    Navigation Links
    ======================== */
@@ -173,7 +177,7 @@ body.dark-mode {
 }
 
 body.dark-mode a {
-  color: #58a6ff;
+  color: #ffffff;
 }
 
 body.dark-mode .section {

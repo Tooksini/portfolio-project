@@ -13,7 +13,7 @@ const Footer = () =>{
             <div className="social-links-footer">
                 <a href="https://github.com/Tooksini" target="_blank" rel="noopener noreferrer">GitHub </a>
                 <a href="https://linkedin.com/in/sachincuff/" target="_blank" rel="noopener noreferrer">LinkedIn </a>
-                <a href="mailto:cuffsachin@gmail.com">email </a>
+                <a href="mailto:cuffsachin@gmail.com">Email </a>
             </div>
 
             <button onClick={scrollToTop}>Back To Top</button>
