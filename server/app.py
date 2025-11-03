@@ -99,15 +99,16 @@ def serve_static(filename):
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_react(path):
-    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "build"))
+    build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
 
-    # Serve files that exist directly in build/ (favicon, manifest, etc.)
+    # Serve static files directly if they exist
     file_path = os.path.join(build_dir, path)
-    if path and os.path.exists(file_path):
+    if path != "" and os.path.exists(file_path):
         return send_from_directory(build_dir, path)
 
-    # React Router fallback
+    # Fallback to index.html for React Router
     return send_from_directory(build_dir, "index.html")
+
 
 
 # -------------------------------------
