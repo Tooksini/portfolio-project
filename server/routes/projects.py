@@ -1,16 +1,6 @@
-import os, sys
-
-# Allow both local (`python app.py`) and Render (`gunicorn server.app:app`) runs
-if __package__ is None or __package__ == "":
-    # running locally → we're already inside `server/`
-    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-    from db_connect import get_db_connection
-else:
-    # running as package on Render
-    from server.db_connect import get_db_connection
-
+from db_connect import get_db_connection
 from flask import Blueprint, jsonify
-
+import os
 
 # Prefix ensures API endpoints live under /api/
 projects_bp = Blueprint("projects_bp", __name__, url_prefix="/api")
