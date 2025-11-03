@@ -6,8 +6,15 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
-from routes.projects import projects_bp
-import os
+import os, sys
+
+# Allow imports to work both locally and on Render
+if __package__ is None or __package__ == "":
+    sys.path.append(os.path.dirname(__file__))
+    from routes.projects import projects_bp
+else:
+    from server.routes.projects import projects_bp
+
 
 # ----------------------------
 # Load environment variables
@@ -94,20 +101,19 @@ def serve_static(filename):
 
 
 # ----------------------------
-# Serve React Frontend
+# Serve React Frontend (SPA)
 # ----------------------------
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_react(path):
     build_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "../client/build"))
 
-    # Serve static files directly if they exist
-    file_path = os.path.join(build_dir, path)
-    if path != "" and os.path.exists(file_path):
+    if path != "" and os.path.exists(os.path.join(build_dir, path)):
         return send_from_directory(build_dir, path)
 
-    # Fallback to index.html for React Router
+    # React Router fallback
     return send_from_directory(build_dir, "index.html")
+
 
 
 
