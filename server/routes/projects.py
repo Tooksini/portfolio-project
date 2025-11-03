@@ -1,6 +1,8 @@
-from db_connect import get_db_connection
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from server.db_connect import get_db_connection
 from flask import Blueprint, jsonify
-import os
+
 
 # Prefix ensures API endpoints live under /api/
 projects_bp = Blueprint("projects_bp", __name__, url_prefix="/api")
