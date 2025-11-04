@@ -73,21 +73,36 @@ def contact():
     if not (name and email and message):
         return jsonify({"status": "error", "message": "Missing fields"}), 400
 
-    msg = Message(
-        subject=f"New Contact Form Message from {name}",
-        recipients=[os.getenv("CONTACT_RECEIVER")],
-        body=f"From: {name}\nEmail: {email}\n\nMessage:\n{message}",
-    )
+    # Prepare SendGrid payload
+    payload = {
+        "personalizations": [{
+            "to": [{"email": os.getenv("CONTACT_RECEIVER")}],
+            "subject": f"New Contact Form Message from {name}"
+        }],
+        "from": {"email": "no-reply@sachinportfolio.com"},
+        "content": [{
+            "type": "text/plain",
+            "value": f"From: {name} <{email}>\n\nMessage:\n{message}"
+        }]
+    }
 
     try:
-        mail.send(msg)
-        print("✅ Email sent successfully!", flush=True)
+        response = requests.post(
+            "https://api.sendgrid.com/v3/mail/send",
+            headers={
+                "Authorization": f"Bearer {os.getenv('SENDGRID_API_KEY')}",
+                "Content-Type": "application/json"
+            },
+            json=payload,
+            timeout=10
+        )
+        response.raise_for_status()
+        print("✅ Email sent successfully via SendGrid!")
         return jsonify({"status": "success", "message": "Email sent successfully!"}), 200
     except Exception as e:
-        print("❌ Error sending email:", e, flush=True)
-        traceback.print_exc(file=sys.stdout)
-        sys.stdout.flush()
-        return jsonify({"status": "error", "message": str(e)}), 500
+        print("❌ SendGrid error:", e)
+        return jsonify({"status": "error", "message": "Failed to send email."}), 500
+
 
 # ----------------------------
 # Serve React Frontend (SPA)
