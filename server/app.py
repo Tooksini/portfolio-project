@@ -71,7 +71,7 @@ def contact():
             "to": [{"email": CONTACT_RECEIVER}],
             "subject": f"New Contact Form Message from {name}"
         }],
-        "from": {"email": "no-reply@sachinportfolio.com"},
+        "from": {"email": "cuffsachin@gmail.com"},
         "content": [{
             "type": "text/plain",
             "value": f"From: {name} <{email}>\n\nMessage:\n{message}"
