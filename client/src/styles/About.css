@@ -26,7 +26,7 @@
    Text Content
    ======================== */
 .about-text {
-    max-width: 600px; /* Limit width of text block */
+    max-width: 600px;
 }
 
 /* ========================
@@ -35,29 +35,29 @@
 .profile-img {
     width: 180px;
     height: 180px;
-    object-fit: cover; /* Keep aspect ratio, crop if needed */
-    border-radius: 50%; /* Circular image */
-    border: 3px solid #0fa245; /* Green border matching theme */
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    object-fit: cover; 
+    border-radius: 50%; 
+    border: 3px solid #0fa245; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 /* Hover effect for profile image */
 .profile-img:hover {
-    transform: translateY(-5px) scale(1.05); /* Lift and slightly enlarge */
-    box-shadow: 0 12px 25px rgba(0,0,0,0.5); /* Stronger shadow */
+    transform: translateY(-5px) scale(1.05); 
+    box-shadow: 0 12px 25px rgba(0,0,0,0.5);
 }
 
 /* ========================
    Skills List
    ======================== */
 .skills {
-    list-style: none; /* Remove bullets */
+    list-style: none;
     padding: 0; 
-    margin-top: 1rem; /* Space above skills */
-    display: flex; /* Display skills horizontally */
-    flex-wrap: wrap; /* Wrap to next line if needed */
-    gap: 0.5rem 1rem; /* Vertical and horizontal spacing */
+    margin-top: 1rem; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0.5rem 1rem; 
 }
 
 /* Individual Skill Item */
@@ -82,11 +82,11 @@
    ======================== */
 @media (max-width: 768px) {
     .about-content {
-        flex-direction: column; /* Stack image and text vertically */
-        gap: 2rem; /* Reduce gap on mobile */
+        flex-direction: column;
+        gap: 2rem; 
     }
     .profile-img {
-        width: 140px; /* Smaller image on mobile */
+        width: 140px;
         height: 140px;
     }
 }

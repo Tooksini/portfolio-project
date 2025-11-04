@@ -1,4 +1,4 @@
-/* Projects Section - layout only, colors follow theme */
+/* Projects Section */
 .projects-section {
     padding: 6rem 2rem;
     display: flex;
@@ -10,7 +10,6 @@
 .projects-section h2 {
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    /* Use accent color from theme or inline style */
 }
 
 /* Grid layout */
@@ -24,7 +23,7 @@
 }
 
 .project-card {
-    --grad: #0fa245, #000000; /* green gradient matching your theme */
+    --grad: #0fa245, #000000; 
     padding: 2rem;
     border-radius: 2rem;
     display: grid;
@@ -34,7 +33,7 @@
         "bar bar" / 1fr auto;
     gap: 1.5rem;
     font-family: Courier, sans-serif;
-    color: inherit; /* inherit text color from theme */
+    color: inherit;
     background-image: linear-gradient(to bottom left, rgba(15,162,69,0.2), rgba(71,220,240,0.1));
     box-shadow:
         inset -2px 2px rgba(255,255,255,0.3),

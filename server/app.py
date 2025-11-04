@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os, sys
+import requests
 import traceback
 
 # ----------------------------

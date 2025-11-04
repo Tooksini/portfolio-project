@@ -2,7 +2,7 @@
    Footer Section
    ======================== */
 .footer-section {
-    background: rgba(0,0,0,0.2); /* glassy base */
+    background: rgba(0,0,0,0.2);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255,255,255,0.3);
@@ -13,7 +13,7 @@
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    color: inherit; /* inherit theme text color */
+    color: inherit; 
     transition: all 0.3s ease;
 }
 
@@ -23,7 +23,6 @@
 }
 
 /* Social links inside footer */
-
 .social-links-footer {
     display: flex;
     gap: 1.5rem;
