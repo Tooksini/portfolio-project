@@ -32,7 +32,10 @@
 }
 
 .navbar h2.logo:hover {
- color: #0fa245;
+  background: linear-gradient(145deg, #47dcf0, #0fa245);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #0fa245;
   transition: all 0.3s ease;
 }
 
@@ -60,11 +63,14 @@ body.dark-mode h2.logo{
 
 /* Hover effect for nav links */
 .nav-links li a:hover {
-    background: rgba(255, 255, 255, 0.25);
-    color: #0fa245;
+    background: linear-gradient(145deg, #47dcf0, #0fa245);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #ffffff;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transform: translateY(-2px);
 }
+
 
 /* ========================
    Theme Toggle
