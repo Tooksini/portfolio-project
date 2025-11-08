@@ -2,12 +2,12 @@
    About Section Container
    ======================== */
 .about-section {
-    background: linear-gradient(135deg, #121212, #1e1e2f); /* Dark gradient background */
-    color: #f5f5f5; /* Text color */
-    padding: 6rem 2rem; /* Top/Bottom and Left/Right padding */
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
+    background: linear-gradient(135deg, #121212, #1e1e2f);
+    color: #f5f5f5; 
+    padding: 6rem 2rem; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }
 
 /* ========================
@@ -15,11 +15,11 @@
    ======================== */
 .about-content {
     display: flex;
-    flex-direction: row; /* Layout: image + text side by side on desktop */
-    align-items: center; /* Vertically center items */
-    gap: 3rem; /* Space between image and text */
-    max-width: 1200px; /* Max width of section */
-    width: 100%; /* Full width within max-width */
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1200px; 
+    width: 100%; 
 }
 
 /* ========================
@@ -37,7 +37,7 @@
     height: 180px;
     object-fit: cover; 
     border-radius: 50%; 
-    border: 3px solid #0fa245; 
+    border: 3px solid #0fa245;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3); 
     transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
@@ -62,19 +62,19 @@
 
 /* Individual Skill Item */
 .skills li {
-    background: rgba(15, 162, 69, 0.2); /* Light green background */
-    padding: 0.5rem 0.8rem; /* Space inside the badge */
-    border-radius: 12px; /* Rounded corners */
+    background: linear-gradient(135deg, #0fa245, #47dcf0);
+    padding: 0.5rem 0.8rem;
+    border-radius: 12px; 
     font-size: 0.9rem;
-    color: #0fa245; /* Green text color */
+    color: #000000;
     font-weight: 500;
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover animation */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Hover effect for each skill */
 .skills li:hover {
-    transform: translateY(-2px) scale(1.05); /* Slight lift and enlarge */
-    box-shadow: 0 4px 10px rgba(15, 162, 69, 0.5); /* Shadow with theme color */
+    transform: translateY(-2px) scale(1.05); 
+    box-shadow: 0 4px 10px rgba(15, 162, 69, 0.5); 
 }
 
 /* ========================

@@ -11,17 +11,17 @@ const About = () => {
                 <div className="about-text">
                     <h2>Sachin Cuff</h2>
                     <p>
-                        Hello, I am a software developer with traces of full-stack skills in React, Python, and MySQL.
+                        Hello! It's an honor to have you here. I am a software developer with traces of full-stack skills in React, Python, and MySQL.
                         My career goal is to build scalable, impactful, and user-friendly applications.
                     </p>
 
-                    <h3>Technical Skills</h3>
+                    <h3>Technical Competencies</h3>
                     <ul className="skills">
                         <li>JavaScript / React / jQuery</li>
                         <li>Python / Flask</li>
                         <li>Java / Spring / Spring Boot</li>
                         <li>HTML / CSS / Bootstrap</li>
-                        <li>MySQL / Databases</li>
+                        <li>MySQL / PostgresSQL / Databases</li>
                     </ul>
                 </div>
             </div>

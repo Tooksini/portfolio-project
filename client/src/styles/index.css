@@ -6,8 +6,6 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-}
-
-h1, h2, h3 {
-    font-family:'Urbanist', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

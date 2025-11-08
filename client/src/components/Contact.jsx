@@ -31,46 +31,57 @@ const Contact = () => {
       setAlert({ type: "error", message: "Network error. Try again!" });
     }
 
-    // Hide alert after 4 seconds
     setTimeout(() => setAlert({ type: "", message: "" }), 4000);
   };
 
   return (
     <section id="contact" className="contact-section">
-      <h2>Contact Me</h2>
-      <form onSubmit={handleSubmit} className="contact-form">
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          value={formData.message}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Send</button>
-      </form>
+      <div className="contact-card">
+        <h2>Contact Me</h2>
 
-      {/* Popup Alert */}
-      {alert.message && (
-        <div className={`alert ${alert.type}`}>
-          {alert.message}
-        </div>
-      )}
+        <form onSubmit={handleSubmit} className="contact-form">
+          <div className="input-box">
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+            <label>Name</label>
+          </div>
+
+          <div className="input-box">
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <label>Email</label>
+          </div>
+
+          <div className="input-box">
+            <textarea
+              name="message"
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            />
+            <label>Message</label>
+          </div>
+
+          <button type="submit">Send Message</button>
+        </form>
+
+        {alert.message && (
+          <div className={`alert ${alert.type}`}>
+            {alert.message}
+          </div>
+        )}
+      </div>
     </section>
   );
 };
