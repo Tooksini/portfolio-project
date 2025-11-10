@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Navbar.css";
 
-const Navbar = ({ toggleTheme }) => {
+const Navbar = ({ toggleTheme, darkMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuToggle = () => {
@@ -25,7 +25,11 @@ const Navbar = ({ toggleTheme }) => {
 
       <div className="navbar-actions">
         <label className="theme-switch">
-          <input type="checkbox" onChange={toggleTheme} />
+          <input
+            type="checkbox"
+            onChange={toggleTheme}
+            checked={darkMode}
+          />
           <span className="slider"></span>
         </label>
 
