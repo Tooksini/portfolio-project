@@ -16,9 +16,12 @@ html, body {
 /* Section layout */
 .contact-section {
   height: 100vh;
+  margin-top: 4rem;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 /* Glass glowing card */

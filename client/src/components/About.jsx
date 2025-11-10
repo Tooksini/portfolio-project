@@ -17,11 +17,11 @@ const About = () => {
 
                     <h3>Technical Competencies</h3>
                     <ul className="skills">
-                        <li>JavaScript / React / jQuery</li>
-                        <li>Python / Flask</li>
-                        <li>Java / Spring / Spring Boot</li>
-                        <li>HTML / CSS / Bootstrap</li>
-                        <li>MySQL / PostgresSQL / Databases</li>
+                        <li>JavaScript | React | jQuery</li>
+                        <li>Python | Flask</li>
+                        <li>Java | Spring | Spring Boot</li>
+                        <li>HTML | CSS | Bootstrap</li>
+                        <li>MySQL | PostgresSQL</li>
                     </ul>
                 </div>
             </div>
