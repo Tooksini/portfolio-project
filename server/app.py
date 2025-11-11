@@ -40,6 +40,8 @@ CORS(
     origins=[
         "http://localhost:3000",
         "https://portfolio-project-x2xz.onrender.com",
+        "https://sachinportfolio.com",
+        "https://www.sachinportfolio.com"
     ],
     methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],

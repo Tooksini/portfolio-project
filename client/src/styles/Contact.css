@@ -16,7 +16,8 @@ html, body {
 /* Section layout */
 .contact-section {
   height: 100vh;
-  margin-top: 4rem;
+  margin-top: 0;
+  padding-top: 2rem;
   display: flex;
   position: relative;
   justify-content: center;
