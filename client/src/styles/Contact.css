@@ -8,7 +8,7 @@
 html, body {
   height: 100%;
   margin: 0;
-  background: radial-gradient(circle at top left, #0a0a0a, #121223, #1b1b2f);
+  background: #1b1b2f;
   font-family: "Poppins", sans-serif;
   color: #f5f5f5;
 }
@@ -16,8 +16,7 @@ html, body {
 /* Section layout */
 .contact-section {
   height: 100vh;
-  margin-bottom: -3rem; 
-  padding-bottom: 5rem;
+  margin-top: 0;
   padding-top: 2rem;
   display: flex;
   position: relative;
