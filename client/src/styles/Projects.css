@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
-  background-color: var(--section-bg-light);
+  background: var(--section-bg-light);
   transition: background-color 0.4s ease, color 0.4s ease;
   z-index: 1;
   color: var(--text-light);
@@ -20,7 +20,7 @@
 
 /* Dark Mode Styling */
 body.dark-mode .projects-section {
-  background-color: var(--section-bg-dark);
+  background: linear-gradient(to bottom, #003049 0%, #003049 70%, #1b1b2f);
   color: var(--text-dark);
 }
 
