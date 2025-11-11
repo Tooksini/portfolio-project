@@ -2,7 +2,6 @@
    Footer Section
    ======================== */
 .footer-section {
-  background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -14,7 +13,11 @@
   align-items: center;
   gap: 1.5rem;
   color: inherit;
-  transition: all 0.3s ease;
+  transition: background-color 0.4s ease;
+}
+
+body.dark-mode .footer-section {
+  background-color: #0d1117;
 }
 
 .footer-section p {

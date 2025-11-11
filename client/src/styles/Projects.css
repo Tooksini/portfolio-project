@@ -1,16 +1,10 @@
-:root {
-  --section-bg-light: #f8f9fa; 
-  --section-bg-dark: #003049;  
-  --text-light: #0e0e15;
-  --text-dark: #f1f1f1;
-}
-
 /* Projects Section */
 .projects-section {
   padding: 6rem 2rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   background-color: var(--section-bg-light);
   transition: background-color 0.4s ease, color 0.4s ease;

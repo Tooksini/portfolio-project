@@ -4,6 +4,16 @@
 @import './styles/Contact.css';
 @import './styles/Navbar.css';
 
+:root {
+  --section-bg-light: #f8f9fa; 
+  --section-bg-dark: #003049;
+  --contact-bg-light: #e9ecef; 
+  --contact-bg-dark: #1b1b2f;
+  --text-light: #0e0e15;
+  --text-dark: #f1f1f1;
+}
+
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -26,3 +36,5 @@ section {
   padding-top: 6rem;
   padding-bottom: 3rem;
 }
+
+
